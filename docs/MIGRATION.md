@@ -13,7 +13,7 @@
 │  │  Next.js 15        │────▶│  WordPress + Plugins   │  │
 │  │  Frontend App      │     │  (Headless CMS)        │  │
 │  │                    │◀────│                        │  │
-│  │  takovoberry.      │     │  cms.takovoberry.      │  │
+│  │  takovoberry.      │     │  cms-takovoberry.      │  │
 │  │  orbu.studio       │     │  orbu.studio           │  │
 │  └────────────────────┘     └────────────────────────┘  │
 │                                                          │
@@ -29,14 +29,14 @@
 1. Log in to **hPanel** (Hostinger control panel)
 2. Go to **Websites** → **orbu.studio**
 3. Go to **Domains** → **Subdomains**
-4. Create subdomain: `cms.takovoberry.orbu.studio`
+4. Create subdomain: `cms-takovoberry.orbu.studio`
 5. Wait for DNS propagation (can take a few minutes)
 
 ### Step 2: Install WordPress
 
 1. In hPanel, go to **Websites** → **Add Website**
 2. Select **WordPress**
-3. Choose domain: `cms.takovoberry.orbu.studio`
+3. Choose domain: `cms-takovoberry.orbu.studio`
 4. Set admin credentials (save these!)
 5. Complete installation
 
@@ -88,7 +88,7 @@ Install these plugins in WordPress admin:
 /Applications/MAMP/Library/bin/mysqldump -u root -p takovoberry > takovoberry_backup.sql
 
 # Update URLs in the SQL file
-sed -i '' 's|http://localhost:8888/takovoberry|https://cms.takovoberry.orbu.studio|g' takovoberry_backup.sql
+sed -i '' 's|http://localhost:8888/takovoberry|https://cms-takovoberry.orbu.studio|g' takovoberry_backup.sql
 
 # Import on Hostinger via phpMyAdmin or CLI
 ```
@@ -116,7 +116,7 @@ zip -r uploads.zip uploads/
    - Add Serbian (sr) 
    - Set default language
 3. **Settings** → **Reading** → Ensure front page is set
-4. Test GraphQL: Visit `https://cms.takovoberry.orbu.studio/graphql`
+4. Test GraphQL: Visit `https://cms-takovoberry.orbu.studio/graphql`
 
 ### Step 9: Security Hardening
 
@@ -175,8 +175,8 @@ Go to **Project Settings** → **Environment Variables** and add:
 
 | Name | Value |
 |------|-------|
-| `NEXT_PUBLIC_WORDPRESS_URL` | `https://cms.takovoberry.orbu.studio` |
-| `NEXT_PUBLIC_GRAPHQL_ENDPOINT` | `https://cms.takovoberry.orbu.studio/graphql` |
+| `NEXT_PUBLIC_WORDPRESS_URL` | `https://cms-takovoberry.orbu.studio` |
+| `NEXT_PUBLIC_GRAPHQL_ENDPOINT` | `https://cms-takovoberry.orbu.studio/graphql` |
 | `NEXT_PUBLIC_SITE_NAME` | `Takovoberry` |
 | `NEXT_PUBLIC_SITE_URL` | `https://takovoberry.orbu.studio` |
 
@@ -258,7 +258,7 @@ If you see CORS errors in console:
 3. Check image URLs in WordPress are using HTTPS
 
 ### GraphQL Errors
-1. Test endpoint directly: `https://cms.takovoberry.orbu.studio/graphql`
+1. Test endpoint directly: `https://cms-takovoberry.orbu.studio/graphql`
 2. Check WPGraphQL is active
 3. Verify ACF to WPGraphQL plugin is active
 4. Check field groups are set to "Show in GraphQL"

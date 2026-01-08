@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
       // Production WordPress
       {
         protocol: 'https',
-        hostname: 'cms.takovoberry.orbu.studio',
+        hostname: 'cms-takovoberry.orbu.studio',
         pathname: '/wp-content/uploads/**',
       },
       // Gravatar for user avatars
