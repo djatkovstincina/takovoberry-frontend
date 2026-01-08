@@ -601,6 +601,12 @@
             z-index: 10;
             animation: fadeInUp 0.3s ease;
 
+            // Mobile: constrain width and position
+            @media (max-width: 767px) {
+                min-width: 200px;
+                max-width: 250px;
+            }
+
             @include mq("lg") {
                 min-width: 280px;
             }
@@ -613,6 +619,30 @@
                 transform: translateX(-50%);
                 border: 8px solid transparent;
                 border-bottom-color: $white;
+            }
+
+            // Position adjustments for hotspots near edges
+            &--left {
+                left: 0;
+                transform: translateX(0);
+                transition: all 0.3s ease;
+
+                &::before {
+                    left: 15px;
+                    transform: translateX(0);
+                }
+            }
+
+            &--right {
+                left: auto;
+                right: 0;
+                transform: translateX(0);
+
+                &::before {
+                    left: auto;
+                    right: 15px;
+                    transform: translateX(0);
+                }
             }
         }
 

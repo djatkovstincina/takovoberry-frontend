@@ -26,6 +26,7 @@
     &__row {
         display: grid;
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
         gap: 1rem;
         align-items: center;
         transition: all 0.3s ease;
@@ -42,6 +43,7 @@
             grid-column: 2 / 12; // Offset 1 col on each side (span cols 2-11)
             display: grid;
             grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
             gap: 2rem;
         }
 

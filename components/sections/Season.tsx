@@ -35,6 +35,7 @@ export default function Season({ data }: SeasonProps) {
     const sectionRef = useRef<HTMLElement>(null);
     const animationInitialized = useRef(false);
     const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
+    const isTouchDevice = useRef(false);
 
     const {
         tag,
@@ -48,6 +49,11 @@ export default function Season({ data }: SeasonProps) {
 
     const blueberryImageData = blueberryImage?.node;
     const leavesImageData = leavesImage?.node;
+
+    // Detect touch device on mount
+    useEffect(() => {
+        isTouchDevice.current = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    }, []);
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -96,6 +102,27 @@ export default function Season({ data }: SeasonProps) {
 
     const handleHotspotClick = (index: number) => {
         setActiveHotspot(activeHotspot === index ? null : index);
+    };
+
+    const handleMouseEnter = (index: number) => {
+        // Only use hover on non-touch devices
+        if (!isTouchDevice.current) {
+            setActiveHotspot(index);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        // Only use hover on non-touch devices
+        if (!isTouchDevice.current) {
+            setActiveHotspot(null);
+        }
+    };
+
+    // Get position class for info window based on hotspot position
+    const getInfoPositionClass = (positionX: number) => {
+        if (positionX < 30) return 'season__hotspot-info--left';
+        if (positionX > 70) return 'season__hotspot-info--right';
+        return '';
     };
 
     return (
@@ -161,8 +188,8 @@ export default function Season({ data }: SeasonProps) {
                                             top: `${hotspot.positionY}%`,
                                         }}
                                         onClick={() => handleHotspotClick(index)}
-                                        onMouseEnter={() => setActiveHotspot(index)}
-                                        onMouseLeave={() => setActiveHotspot(null)}
+                                        onMouseEnter={() => handleMouseEnter(index)}
+                                        onMouseLeave={handleMouseLeave}
                                     >
 
                                         <div className="season__hotspot-circle">
@@ -174,7 +201,7 @@ export default function Season({ data }: SeasonProps) {
 
                                         {/* Info Window */}
                                         {activeHotspot === index && (
-                                            <div className="season__hotspot-info">
+                                            <div className={`season__hotspot-info ${getInfoPositionClass(hotspot.positionX)}`}>
                                                 <h4 className="season__hotspot-title">{hotspot.title}</h4>
                                                 <p className="season__hotspot-description">{hotspot.description}</p>
                                             </div>

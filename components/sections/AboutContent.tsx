@@ -104,7 +104,8 @@ export default function AboutContent({ data }: AboutContentProps) {
         setSliderPosition(clampedPercentage);
     };
 
-    const handleTouchStart = () => {
+    const handleTouchStart = (e: React.TouchEvent) => {
+        e.preventDefault();
         setIsDragging(true);
     };
 
@@ -114,6 +115,7 @@ export default function AboutContent({ data }: AboutContentProps) {
 
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
         if (!isDragging || !sliderRef.current) return;
+        e.preventDefault();
 
         const rect = sliderRef.current.getBoundingClientRect();
         const x = e.touches[0].clientX - rect.left;

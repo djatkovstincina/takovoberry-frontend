@@ -104,6 +104,7 @@
         z-index: 3;
         cursor: ew-resize;
         pointer-events: all;
+        touch-action: none; // Prevent page scroll while dragging
     }
 
     &__slider-line {

@@ -87,11 +87,15 @@
 
     // Contact Info Section
     &__info {
-        // grid-column: 1 / 5;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         gap: 1.5rem;
+
+        @include mq("md") {
+            flex-direction: row;
+            align-items: center;
+        }
     }
 
     &__info-item {

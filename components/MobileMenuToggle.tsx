@@ -73,11 +73,26 @@ export default function MobileMenuToggle() {
 
         document.addEventListener('keydown', handleEscape);
 
+        // Close menu when clicking on a menu link (for mobile navigation)
+        const menuLinks = mobileMenu.querySelectorAll('.header__menu-link');
+        const handleLinkClick = () => {
+            if (window.innerWidth < 992 && mobileMenu.classList.contains('is-open')) {
+                toggleMenu();
+            }
+        };
+
+        menuLinks.forEach((link) => {
+            link.addEventListener('click', handleLinkClick);
+        });
+
         // Cleanup
         return () => {
             burgerToggle.removeEventListener('click', toggleMenu);
             document.removeEventListener('click', handleClickOutside);
             document.removeEventListener('keydown', handleEscape);
+            menuLinks.forEach((link) => {
+                link.removeEventListener('click', handleLinkClick);
+            });
             document.body.style.overflow = '';
         };
     }, []);

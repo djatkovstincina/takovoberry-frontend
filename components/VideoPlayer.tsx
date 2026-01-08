@@ -24,10 +24,13 @@ export default function VideoPlayer({
     const [isPlaying, setIsPlaying] = useState(autoPlay);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
+
+        setMounted(true);
 
         const handlePlay = () => setIsPlaying(true);
         const handlePause = () => setIsPlaying(false);
@@ -99,7 +102,7 @@ export default function VideoPlayer({
                 Your browser does not support the video tag.
             </video>
 
-            <div className={`video-player__controls ${showControls ? "visible" : ""}`}>
+            <div className={`video-player__controls ${showControls && mounted ? "visible" : ""}`}>
                 <button
                     onClick={togglePlayPause}
                     className="video-player__button video-player__button__play"

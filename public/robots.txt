@@ -10,4 +10,4 @@ Disallow: /
 # Allow: /
 # Disallow: /api/
 # Disallow: /_next/
-# Sitemap: https://YOUR_PRODUCTION_DOMAIN/sitemap.xml
+# Sitemap: https://takovoberry.com/sitemap.xml
