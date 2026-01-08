@@ -1,0 +1,93 @@
+@use "../abstracts" as *;
+
+::selection {
+  background-color: $primary-blue;
+  color: $white;
+  transition: all 0.3s ease;
+}
+
+::-moz-selection {
+  background-color: $primary-blue;
+  color: $white;
+  text-shadow: 0 0 2px $secondary-blue;
+}
+
+body {
+  font-family: $font-family-body;
+  // Required for smooth selection transition on some browsers
+  -webkit-tap-highlight-color: transparent;
+
+  *::selection {
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-headings;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  color: $primary-blue;
+}
+
+p {
+  font-family: $font-family-body;
+  margin-bottom: 1.5em;
+}
+
+a {
+  color: $primary-blue;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $secondary-blue;
+  }
+}
+
+// Media
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none; // Prevent selection
+}
+
+// Lists
+ul,
+ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+.scroll-page {
+  overflow: hidden;
+}
+
+// Animation visibility: Hide elements that will animate on viewport entry
+// This prevents the flash/jump before GSAP sets initial state
+// Elements with [data-animate] attribute will be hidden until animated
+[data-animate] {
+  opacity: 0;
+}
+
+// Fallback: If JS is disabled, show elements normally
+// This uses :has() to detect if GSAP hasn't initialized yet
+@media (scripting: none) {
+  [data-animate] {
+    opacity: 1;
+  }
+}

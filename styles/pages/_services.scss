@@ -1,0 +1,215 @@
+@use "../abstracts" as *;
+
+// Services Content Section with Sticky Sidebar Navigation
+.services-content {
+    padding: 4rem 0;
+    position: relative;
+    // Use clip instead of overflow: hidden to allow sticky positioning
+    clip-path: inset(0 0 0 0);
+
+    @include mq("lg") {
+        padding: 8rem 0;
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        @include mq("lg") {
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+    }
+
+    // Sticky Sidebar Navigation
+    &__sidebar-wrapper {
+        order: -1; // Show above content on mobile
+        position: relative;
+
+        @include mq("lg") {
+            grid-column: 2 / 6; // Offset 1 col on left, span 4 cols (leaves 1 col gap before content)
+            position: sticky;
+            top: 8rem;
+            order: 0;
+        }
+    }
+
+    &__nav {
+        background-color: $off-white;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+
+        @include mq("lg") {
+            padding: 2.5rem 3rem;
+        }
+    }
+
+    &__leaves {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: -15%;
+        width: 40%;
+        transform: translateY(-50%);
+        z-index: 1;
+        pointer-events: none;
+
+        @include mq("lg") {
+            left: -30%;
+            width: 80%;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    }
+
+    &__nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__nav-item {
+        margin: 0;
+    }
+
+    &__nav-link {
+        position: relative;
+        display: block;
+        font-size: 1.25rem;
+        font-size: clamp(1rem, 1.25rem + 1vw, 1.25rem);
+        font-weight: 500;
+        color: $charcoal;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+
+        &:hover,
+        &:focus,
+        &--active {
+            color: $secondary-green;
+
+            &::before {
+                transform: translateY(-50%) scale(1);
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: -24px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            width: 10px;
+            height: 10px;
+            background-color: $primary-blue;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    // Content Text Area
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        @include mq("lg") {
+            grid-column: 7 / 13; // Span right 6 columns
+        }
+    }
+}
+
+.services-content {
+
+    // Content blocks - shared styles (can be extracted to a shared file if used elsewhere)
+    .content-block {
+        &--heading {
+            scroll-margin-top: 120px; // Account for fixed header when scrolling to anchor
+            margin-bottom: 0;
+        }
+
+        &__tag {
+            display: inline;
+            color: $secondary-green;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+
+            @include mq("lg") {
+                align-self: flex-start;
+            }
+        }
+
+        &__tag-icon {
+            display: inline-block;
+            width: 17px;
+            height: 11px;
+            flex-shrink: 0;
+            vertical-align: baseline;
+            position: relative;
+            top: -4px;
+        }
+
+        &__title {
+            font-size: 2.5rem;
+            font-size: clamp(1.25rem, 2.5rem + 1vw, 2.5rem);
+            font-weight: 700;
+            color: $primary-blue;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        &--text {
+            p {
+                font-size: 1rem;
+                line-height: 1.7;
+                color: $charcoal;
+                margin: 0;
+            }
+        }
+
+        &--features {
+            .features-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+
+                &__item {
+                    position: relative;
+                    padding-left: 1.75rem;
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    color: $charcoal;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 0.5rem;
+                        width: 8px;
+                        height: 8px;
+                        background-color: $primary-blue;
+                        border-radius: 50%;
+                    }
+
+                    @include mq("lg") {
+                        font-size: 1.0625rem;
+                    }
+                }
+            }
+        }
+    }
+}

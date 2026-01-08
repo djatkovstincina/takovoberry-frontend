@@ -1,0 +1,85 @@
+@use "../abstracts/" as *;
+
+.row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1 1 200px;
+  min-width: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.input-field,
+.wpcf7-form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid $light-gray;
+  border-radius: 0.5rem;
+  background: #f9f9f9;
+  color: $black;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus,
+.wpcf7-form-control:focus {
+  border-color: $primary-blue;
+  outline: none;
+}
+
+textarea.input-field,
+.wpcf7-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.cta--item {
+  background: $primary-blue;
+  color: #fff;
+  border: none;
+  margin-top: 1.5rem;
+  border-radius: 3rem;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.cta--item:hover,
+.cta--item:focus {
+  background: $secondary-blue;
+}
+
+.wpcf7-spinner {
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+.wpcf7-response-output {
+  margin: 0.5rem !important;
+  color: $primary-green;
+  font-size: 1rem;
+}
+
+.wpcf7-not-valid-tip {
+  position: absolute;
+  top: calc(100% + 0.725rem);
+  left: 0;
+  color: $primary-green;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+// Hide fieldset with hidden fields
+.hidden-fields-container {
+  display: none;
+}

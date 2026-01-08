@@ -1,0 +1,43 @@
+{
+    "nav": {
+        "home": "Početna",
+        "about": "O Nama",
+        "services": "Usluge",
+        "courses": "Kursevi",
+        "gallery": "Galerija",
+        "news": "Vesti",
+        "certificates": "Sertifikati",
+        "contact": "Kontakt"
+    },
+    "home": {
+        "hero": {
+            "title": "Takovoberry",
+            "subtitle": "Dobrodošli na našu veb stranicu",
+            "learnMore": "Saznaj Više",
+            "getInTouch": "Kontaktirajte Nas"
+        },
+        "explore": {
+            "title": "Istražite Našu Web Stranicu",
+            "about": "Saznajte više o našoj priči i misiji",
+            "services": "Otkrijte šta nudimo",
+            "courses": "Pregledajte naše obrazovne programe",
+            "gallery": "Pogledajte našu foto galeriju",
+            "news": "Pročitajte najnovije vesti",
+            "certificates": "Pogledajte naše sertifikate",
+            "contact": "Stupite u kontakt sa nama"
+        },
+        "cta": {
+            "title": "Spremni da Počnete?",
+            "description": "Kontaktirajte nas danas i saznajte više o našim uslugama i ponudama.",
+            "button": "Kontaktirajte Nas"
+        }
+    },
+    "common": {
+        "readMore": "Pročitaj Više",
+        "viewAll": "Pogledaj Sve",
+        "backToHome": "Nazad na Početnu",
+        "loading": "Učitavanje...",
+        "error": "Došlo je do greške",
+        "noResults": "Nema rezultata"
+    }
+}

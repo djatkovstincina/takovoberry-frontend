@@ -1,0 +1,32 @@
+@use "sass:meta";
+@use "sass:math";
+
+// Strip unit from number
+@function strip-unit($value) {
+  @if meta.type-of($value) == "number" and not math.is-unitless($value) {
+    @return math.div($value, $value * 0 + 1);
+  }
+
+  @return $value;
+}
+
+// Convert px to rem
+@function rem($px, $base: 16px) {
+  @return math.div(strip-unit($px), strip-unit($base)) * 1rem;
+}
+
+// Get contrast color (black or white) depending on background
+@function contrast-color($color, $dark: #000000, $light: #ffffff) {
+  @if (lightness($color) > 50) {
+    @return $dark;
+  } @else {
+    @return $light;
+  }
+}
+
+// Calculate fluid value between min and max
+@function fluid($min, $max, $min-vw: 320, $max-vw: 1440) {
+  $slope: ($max - $min) / ($max-vw - $min-vw);
+  $base: $min - $slope * $min-vw;
+  @return calc(#{$base}px + #{$slope * 100}vw);
+}

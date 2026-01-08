@@ -1,0 +1,373 @@
+@use "../abstracts" as *;
+
+// Gallery Content Section
+.gallery-content {
+    padding: 4rem 0;
+
+    @include mq("lg") {
+        padding: 8rem 0;
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        @include mq("lg") {
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+    }
+
+    // Left side - Info (4 cols)
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        @include mq("lg") {
+            grid-column: 1 / 5; // First 4 columns
+            position: sticky;
+            align-items: start;
+            top: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: $primary-green;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    &__tag-icon {
+        flex-shrink: 0;
+    }
+
+    &__title {
+        font-size: 2.5rem;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: 700;
+        color: $primary-blue;
+        line-height: 1.2;
+        text-align: center;
+        margin: 0;
+
+        @include mq("lg") {
+            text-align: left;
+        }
+    }
+
+    &__description {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: $charcoal;
+        margin: 0;
+        text-align: center;
+
+        @include mq("lg") {
+            text-align: left;
+        }
+    }
+
+    // Right side - Gallery (8 cols)
+    &__gallery {
+
+        @include mq("lg") {
+            grid-column: 5 / 13; // Last 8 columns
+        }
+    }
+
+    &__main {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &__main-swiper {
+        width: 100%;
+
+        .swiper-slide {
+            width: 100% !important;
+            height: auto;
+        }
+    }
+
+    &__main-image {
+        position: relative;
+        width: 100%;
+        padding-bottom: 62.5%; // 16:10 aspect ratio (10/16 = 0.625)
+        border-radius: 20px;
+        overflow: hidden;
+
+        @include mq("lg") {
+            border-radius: 40px;
+        }
+    }
+
+    // Navigation overlay
+    &__nav {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        z-index: 10;
+
+        @include mq("lg") {
+            top: 1.5rem;
+            right: 1.5rem;
+            gap: 1rem;
+        }
+    }
+
+    &__counter {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: $white;
+        background-color: rgba($black, 0.4);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+
+        @include mq("lg") {
+            font-size: 1rem;
+            padding: 0.625rem 1.25rem;
+        }
+    }
+
+    &__nav-buttons {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__nav-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary-blue;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: $white;
+
+        &:hover {
+            background-color: $secondary-blue, 10%;
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    // Thumbnail Slider
+    &__thumbnails-wrapper {
+        margin-top: 2rem;
+        width: 100%;
+        overflow: hidden;
+
+        @include mq("lg") {
+            margin-top: 4rem;
+        }
+    }
+
+    &__thumbnails-swiper {
+        width: 100%;
+
+        .swiper-slide {
+            height: auto;
+        }
+    }
+
+    &__thumbnail {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 3px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: 0;
+        background: none;
+        display: block;
+
+        @include mq("lg") {
+            border-radius: 12px;
+        }
+
+        &:hover,
+        &--active {
+            border-color: $off-white;
+            border-radius: 0;
+        }
+
+        img {
+            transition: transform 0.3s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.05);
+        }
+    }
+}
+
+// Fullscreen Lightbox
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: lightbox-fade-in 0.3s ease;
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba($black, 0.95);
+        cursor: pointer;
+    }
+
+    &__content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    &__swiper {
+        width: 100%;
+        height: 100%;
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            width: 50px;
+            height: 50px;
+            background-color: rgba($white, 0.1);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+
+            &::after {
+                font-size: 18px;
+                color: $white;
+            }
+
+            &:hover {
+                background-color: rgba($white, 0.2);
+            }
+        }
+
+        .swiper-button-prev {
+            left: 20px;
+
+            @include mq("lg") {
+                left: 40px;
+            }
+        }
+
+        .swiper-button-next {
+            right: 20px;
+
+            @include mq("lg") {
+                right: 40px;
+            }
+        }
+    }
+
+    &__image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 60px 80px;
+
+        @include mq("lg") {
+            padding: 80px 120px;
+        }
+    }
+
+    &__controls {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 10;
+
+        @include mq("lg") {
+            top: 2rem;
+            right: 2rem;
+        }
+    }
+
+    &__counter {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: $white;
+        background-color: rgba($white, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
+
+        @include mq("lg") {
+            font-size: 1rem;
+            padding: 0.625rem 1.25rem;
+        }
+    }
+
+    &__close {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($white, 0.1);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: $white;
+
+        &:hover {
+            background-color: rgba($white, 0.2);
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+@keyframes lightbox-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

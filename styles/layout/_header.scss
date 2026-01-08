@@ -1,0 +1,136 @@
+@use "../abstracts" as *;
+
+.site-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: $primary-blue;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+
+  &.is-sticky {
+    position: fixed;
+    top: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.is-open {
+    .header {
+      border-radius: 0;
+    }
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background: $primary-blue;
+
+    @include mq("lg") {
+      padding: 1.5rem 0;
+    }
+
+    .header__logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $secondary-blue;
+
+      .header__logo {
+        width: 100%;
+        max-width: 167px;
+        height: auto;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-left: 2rem;
+
+    @include mq("lg") {
+      display: none;
+    }
+  }
+
+  .header__burger {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+
+      .header__burger-line {
+        background: $primary-green;
+      }
+    }
+
+    @include mq("lg") {
+      display: none;
+    }
+
+    &.is-active {
+      .header__burger-line {
+        background: $primary-green;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+
+        &:nth-child(1) {
+          transform: rotate(45deg) translate(4px, 5px);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg) translate(5px, -6px);
+        }
+      }
+    }
+  }
+
+  .header__burger-line {
+    width: 25px;
+    height: 2px;
+    background: $white;
+    transition: 0.3s;
+    border-radius: 1px;
+  }
+
+  .header__right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    @include mq("lg") {
+      gap: 2.5rem;
+    }
+  }
+}
+
+// Smooth slide-down animation for sticky header
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

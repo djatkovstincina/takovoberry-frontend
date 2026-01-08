@@ -1,0 +1,10 @@
+# This file ensures the fonts directory is tracked in Git
+# Place your font files here:
+# 
+# Inter Font:
+# - Inter-Regular.woff2
+# - Inter-Italic.woff2
+# - Inter-Medium.woff2
+# - Inter-MediumItalic.woff2
+# - Inter-Bold.woff2
+# - Inter-BoldItalic.woff2

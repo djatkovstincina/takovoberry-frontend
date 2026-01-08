@@ -1,0 +1,195 @@
+@use "../abstracts" as *;
+
+.not-found {
+    position: relative;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba($primary-blue, 0.02) 0%, rgba($white, 1) 100%);
+
+    // Decorative background
+    &__background {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    &__leaf {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, rgba($primary-green, 0.08) 0%, rgba($secondary-green, 0.04) 100%);
+        border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+        opacity: 0.6;
+
+        &--1 {
+            top: 10%;
+            left: -5%;
+            transform: rotate(-20deg);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        &--2 {
+            bottom: 15%;
+            right: -8%;
+            width: 250px;
+            height: 250px;
+            transform: rotate(30deg);
+            animation: float 10s ease-in-out infinite 1s;
+        }
+
+        &--3 {
+            top: 60%;
+            left: 5%;
+            width: 120px;
+            height: 120px;
+            transform: rotate(45deg);
+            animation: float 7s ease-in-out infinite 2s;
+        }
+    }
+
+    // Content container
+    &__content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    // 404 Number display
+    &__number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__digit {
+        font-family: $font-family-headings;
+        font-size: clamp(6rem, 15vw, 10rem);
+        font-weight: 800;
+        background: $gradient-blue;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+    }
+
+    // Title
+    &__title {
+        font-family: $font-family-headings;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: $primary-blue;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    // Description
+    &__description {
+        font-family: $font-family-body;
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        color: $medium-gray;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+        max-width: 400px;
+    }
+
+    // Button
+    &__button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem;
+        background: $primary-blue;
+        color: $white;
+        font-family: $font-family-body;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+            background: $secondary-blue;
+            color: $white;
+        }
+    }
+
+    &__button-icon {
+        transition: transform 0.3s ease;
+
+        .not-found__button:hover & {
+            transform: translateX(-4px);
+        }
+    }
+}
+
+// Animations
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--rotation, 0deg));
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(var(--rotation, 0deg));
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .not-found {
+        padding: 4rem 0;
+        min-height: calc(100vh - 150px);
+
+        &__leaf {
+            &--1 {
+                width: 150px;
+                height: 150px;
+            }
+
+            &--2 {
+                width: 180px;
+                height: 180px;
+            }
+
+            &--3 {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        &__number {
+            gap: 0.25rem;
+        }
+
+        &__button {
+            padding: 0.875rem 1.75rem;
+            font-size: 0.9375rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .not-found {
+        &__leaf {
+            display: none;
+        }
+
+        &__description {
+            padding: 0 1rem;
+        }
+    }
+}

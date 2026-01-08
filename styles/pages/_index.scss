@@ -1,0 +1,12 @@
+@use "../abstracts" as *;
+@forward "404";
+@forward "single";
+@forward "home";
+@forward "page-hero";
+@forward "about";
+@forward "services";
+@forward "courses";
+@forward "gallery";
+@forward "announcements";
+@forward "news";
+@forward "contact";

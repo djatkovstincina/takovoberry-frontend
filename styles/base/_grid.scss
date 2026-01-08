@@ -1,0 +1,36 @@
+@use '../abstracts' as *;
+
+// Container
+.container {
+    @include container;
+}
+
+.container-fluid {
+    @include container-fluid;
+}
+
+// Grid System
+.grid {
+    display: grid;
+    gap: 1.5rem;
+
+    &.grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &.grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    &.grid-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    &.grid-6 {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}

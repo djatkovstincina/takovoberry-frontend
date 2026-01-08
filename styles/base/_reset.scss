@@ -1,0 +1,99 @@
+@use "../abstracts" as *;
+
+/* RESET BASELINE */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* REMOVE LIST STYLES */
+ul,
+ol {
+  list-style: none;
+}
+
+/* REMOVE ANCHOR DEFAULTS */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* IMG, VIDEO & MEDIA */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* BUTTON, INPUT, SELECT RESET */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  appearance: none;
+}
+
+/* FORM ELEMENTS FIX */
+textarea {
+  resize: vertical;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* HTML & BODY */
+html {
+  /* Remove default smooth scroll as Lenis handles this */
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  line-height: 1.4;
+  font-family: $font-family-body;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* TABLE RESET */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* HIDDEN ELEMENTS */
+[hidden] {
+  display: none !important;
+}
+
+/* INPUT AUTO-FILL FIX (optional) */
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset;
+  -webkit-text-fill-color: inherit;
+}

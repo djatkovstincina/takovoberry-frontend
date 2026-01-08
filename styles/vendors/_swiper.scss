@@ -1,0 +1,14 @@
+// Swiper Base Styles
+// Note: Swiper CSS is imported in globals.scss as CSS imports
+// This file contains only custom overrides
+
+// Custom Swiper overrides
+.swiper {
+    &-wrapper {
+        display: flex;
+    }
+
+    &-slide {
+        height: auto;
+    }
+}

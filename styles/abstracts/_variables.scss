@@ -1,0 +1,37 @@
+@use "sass:color";
+
+// Colors
+
+// Neutrals
+$white: #ffffff;
+$black: #000000;
+$off-white: #f1f1f1;
+$dark-gray: #505050;
+$medium-gray: #696969;
+$light-gray: #888888;
+$charcoal: #35373e;
+
+// Blues (Primary Brand Colors)
+$primary-blue: #28397b;
+$secondary-blue: #4765ad;
+
+// Greens (Accent Colors)
+$primary-green: #b5ce61;
+$secondary-green: #94b230;
+
+// Gradients
+$gradient-blue: linear-gradient(180deg, #28397b 0%, #4765ad 100%);
+$gradient-grayscale: linear-gradient(90deg, #000000 10%, #888888 52%, #ffffff 100%);
+$gradient-grayscale-light: linear-gradient(90deg, #D9D9D9 0%, #737373 100%);
+
+// Typography
+$font-family-headings: "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-body: "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 1.5rem; // 24px
+$font-size-xxl: 2rem; // 32px
+
+// Spacing
+$spacing-unit: 1rem;
+$spacing-unit-half: 0.5rem;
+$spacing-unit-double: 2rem;

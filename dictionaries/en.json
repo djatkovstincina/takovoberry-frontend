@@ -1,0 +1,43 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "services": "Services",
+        "courses": "Courses",
+        "gallery": "Gallery",
+        "news": "News",
+        "certificates": "Certificates",
+        "contact": "Contact"
+    },
+    "home": {
+        "hero": {
+            "title": "Takovoberry",
+            "subtitle": "Welcome to our website",
+            "learnMore": "Learn More",
+            "getInTouch": "Get in Touch"
+        },
+        "explore": {
+            "title": "Explore Our Website",
+            "about": "Learn about our story and mission",
+            "services": "Discover what we offer",
+            "courses": "Browse our educational programs",
+            "gallery": "View our photo gallery",
+            "news": "Read our latest updates",
+            "certificates": "View our certifications",
+            "contact": "Get in touch with us"
+        },
+        "cta": {
+            "title": "Ready to Get Started?",
+            "description": "Contact us today to learn more about our services and offerings.",
+            "button": "Contact Us"
+        }
+    },
+    "common": {
+        "readMore": "Read More",
+        "viewAll": "View All",
+        "backToHome": "Back to Home",
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "noResults": "No results found"
+    }
+}

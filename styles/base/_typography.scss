@@ -1,0 +1,61 @@
+@use "../abstracts" as *;
+
+// Headings
+h1 {
+  font-size: clamp(2.5rem, 5vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 4.5rem);
+}
+
+h3 {
+  font-size: clamp(1.75rem, 3vw, 3.25rem);
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+// Paragraphs
+p {
+  font-size: rem(16);
+  margin-bottom: 1.5em;
+  line-height: 1.6;
+  color: $black;
+}
+
+// Links
+a {
+  color: $primary-blue;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: $secondary-blue;
+    text-decoration: none;
+  }
+}
+
+// Inline text
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+small {
+  font-size: 80%;
+  opacity: 0.8;
+}

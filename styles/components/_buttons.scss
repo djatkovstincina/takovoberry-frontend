@@ -1,0 +1,10 @@
+@use "../abstracts" as *;
+
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.25em;
+  background: $secondary-blue;
+  color: #fff;
+  border: none;
+  @include transition();
+}
