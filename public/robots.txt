@@ -1,12 +1,13 @@
 # Robots.txt for Takovoberry
-# https://takovoberry.orbu.studio
+# STAGING ENVIRONMENT - Block all crawlers
+# TODO: Update this for production deployment
 
 User-agent: *
-Allow: /
+Disallow: /
 
-# Disallow admin and API routes
-Disallow: /api/
-Disallow: /_next/
-
-# Sitemap location
-Sitemap: https://takovoberry.orbu.studio/sitemap.xml
+# Note: For production, replace with:
+# User-agent: *
+# Allow: /
+# Disallow: /api/
+# Disallow: /_next/
+# Sitemap: https://YOUR_PRODUCTION_DOMAIN/sitemap.xml
