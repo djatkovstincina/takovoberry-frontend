@@ -16,6 +16,7 @@ function buildMenuTree(items: MenuItem[]): MenuItem[] {
   const itemMap = new Map<string, MenuItem>();
   const rootItems: MenuItem[] = [];
 
+
   // First pass: create a map of all items with children arrays
   items.forEach(item => {
     itemMap.set(item.id, { ...item, children: [] });
