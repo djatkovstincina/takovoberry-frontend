@@ -104,7 +104,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                         },
                         1024: {
                             spaceBetween: 24,
-                            slidesPerView: 3.5
+                            slidesPerView: 3
                         },
                     }}
                 >

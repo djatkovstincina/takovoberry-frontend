@@ -93,31 +93,38 @@ async function getHeaderData(lang: Locale) {
 }
 
 // Recursive menu item component
-function MenuItemComponent({ item }: { item: MenuItem }) {
+function MenuItemComponent({ item, lang }: { item: MenuItem; lang: Locale }) {
   const hasChildren = item.children && item.children.length > 0;
 
-  // Extract clean path from WordPress URL
+  // Extract clean path from WordPress URL and ensure language prefix
   const getCleanPath = (path: string, url: string): string => {
     // Try to extract the page slug from the path
     const pathParts = path.split('/').filter(Boolean);
     const wpBasePath = 'takovoberry'; // WordPress installation folder
 
-    // If path has multiple parts, remove the WordPress installation folder
-    if (pathParts.length > 0 && pathParts[0].toLowerCase() === wpBasePath.toLowerCase()) {
-      const cleanedParts = pathParts.slice(1);
-      // If nothing left after removing wp folder, it's the home page
-      if (cleanedParts.length === 0) {
-        return '/';
-      }
-      return '/' + cleanedParts.join('/');
+    // Remove WordPress installation folder if present
+    let cleanedParts = [...pathParts];
+    if (cleanedParts.length > 0 && cleanedParts[0].toLowerCase() === wpBasePath.toLowerCase()) {
+      cleanedParts = cleanedParts.slice(1);
+    }
+
+    // Remove any existing language prefix (en, sr) to avoid duplicates
+    if (cleanedParts.length > 0 && (cleanedParts[0] === 'en' || cleanedParts[0] === 'sr')) {
+      cleanedParts = cleanedParts.slice(1);
+    }
+
+    // If nothing left after cleaning, it's the home page
+    if (cleanedParts.length === 0) {
+      return `/${lang}`;
     }
 
     // If it's an external URL, return as-is
-    if (url.startsWith('http') && !url.includes('localhost')) {
+    if (url.startsWith('http') && !url.includes('localhost') && !url.includes('cms-takovoberry') && !url.includes('takovoberry.orbu.studio')) {
       return url;
     }
 
-    return path;
+    // Return path with language prefix
+    return `/${lang}/${cleanedParts.join('/')}`;
   };
 
   const cleanPath = getCleanPath(item.path || '', item.url);
@@ -143,7 +150,7 @@ function MenuItemComponent({ item }: { item: MenuItem }) {
       {hasChildren && (
         <ul className="header__submenu">
           {item.children!.map((child) => (
-            <MenuItemComponent key={child.id} item={child} />
+            <MenuItemComponent key={child.id} item={child} lang={lang} />
           ))}
         </ul>
       )}
@@ -178,7 +185,7 @@ export default async function Header({ lang }: HeaderProps) {
         <nav className="header__menu">
           <ul className="header__menu-list">
             {menuItems.map((item) => (
-              <MenuItemComponent key={item.id} item={item} />
+              <MenuItemComponent key={item.id} item={item} lang={lang} />
             ))}
           </ul>
         </nav>
