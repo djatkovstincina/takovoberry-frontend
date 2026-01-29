@@ -65,6 +65,7 @@ const CTA: React.FC<CTAProps> = ({ data }) => {
                         className="cta__background-image"
                         sizes="100vw"
                         priority={false}
+                        loading="lazy"
                     />
                 </div>
             )}

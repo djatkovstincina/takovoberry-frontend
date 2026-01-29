@@ -110,6 +110,7 @@ const ContactContent: React.FC<ContactContentProps> = ({ data }) => {
                         alt={leavesImageData.altText || "Decorative leaves"}
                         fill
                         style={{ objectFit: "contain", objectPosition: "right top" }}
+                        loading="lazy"
                     />
                 </div>
             )}

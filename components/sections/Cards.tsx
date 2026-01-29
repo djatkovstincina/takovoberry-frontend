@@ -95,6 +95,7 @@ export default function Cards({ data }: CardsProps) {
                                 width={cards[0].image.node.mediaDetails?.width || 600}
                                 height={cards[0].image.node.mediaDetails?.height || 400}
                                 className="cards__image"
+                                loading="lazy"
                             />
                         </div>
                         <div className="cards__content">
@@ -105,6 +106,7 @@ export default function Cards({ data }: CardsProps) {
                                     width={96}
                                     height={96}
                                     className="cards__icon"
+                                    loading="lazy"
                                 />
                             </div>
                             <span className="cards__tag">
@@ -128,6 +130,7 @@ export default function Cards({ data }: CardsProps) {
                                     width={96}
                                     height={96}
                                     className="cards__icon"
+                                    loading="lazy"
                                 />
                             </div>
                             <span className="cards__tag">
@@ -146,6 +149,7 @@ export default function Cards({ data }: CardsProps) {
                                 width={cards[1].image.node.mediaDetails?.width || 600}
                                 height={cards[1].image.node.mediaDetails?.height || 400}
                                 className="cards__image"
+                                loading="lazy"
                             />
                         </div>
                     </div>
@@ -159,6 +163,7 @@ export default function Cards({ data }: CardsProps) {
                                 width={cards[2].image.node.mediaDetails?.width || 400}
                                 height={cards[2].image.node.mediaDetails?.height || 600}
                                 className="cards__image"
+                                loading="lazy"
                             />
                         </div>
                         <div className="cards__content">
@@ -169,6 +174,7 @@ export default function Cards({ data }: CardsProps) {
                                     width={96}
                                     height={96}
                                     className="cards__icon"
+                                    loading="lazy"
                                 />
                             </div>
                             <span className="cards__tag">

@@ -148,6 +148,7 @@ export default function GalleryContent({ data }: GalleryContentProps) {
                                                     alt={image.altText || "Gallery image " + (index + 1)}
                                                     fill
                                                     style={{ objectFit: "cover" }}
+                                                    loading="lazy"
                                                 />
                                             </div>
                                         </SwiperSlide>
@@ -277,6 +278,7 @@ export default function GalleryContent({ data }: GalleryContentProps) {
                                             fill
                                             style={{ objectFit: "contain" }}
                                             priority={index === currentIndex}
+                                            loading="lazy"
                                         />
                                     </div>
                                 </SwiperSlide>

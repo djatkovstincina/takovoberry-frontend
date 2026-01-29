@@ -141,6 +141,7 @@ export default function AboutContent({ data }: AboutContentProps) {
                                         alt={leavesImageData.altText || "Leaves decoration"}
                                         fill
                                         style={{ objectFit: "contain" }}
+                                        loading="lazy"
                                     />
                                 </div>
                             )}
@@ -161,6 +162,7 @@ export default function AboutContent({ data }: AboutContentProps) {
                                         alt={afterImageData.altText || "After"}
                                         fill
                                         style={{ objectFit: "cover" }}
+                                        loading="lazy"
                                     />
                                 </div>
 
@@ -174,6 +176,7 @@ export default function AboutContent({ data }: AboutContentProps) {
                                         alt={beforeImageData.altText || "Before"}
                                         fill
                                         style={{ objectFit: "cover" }}
+                                        loading="lazy"
                                     />
                                 </div>
 

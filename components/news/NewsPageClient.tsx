@@ -136,6 +136,7 @@ export default function NewsPageClient({ posts, lang }: NewsPageClientProps) {
                                                     alt={post.featuredImage.node.altText || post.title}
                                                     fill
                                                     style={{ objectFit: "cover" }}
+                                                    loading="lazy"
                                                 />
                                             ) : (
                                                 <div className="news-card__placeholder">

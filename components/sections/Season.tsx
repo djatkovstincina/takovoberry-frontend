@@ -176,6 +176,7 @@ export default function Season({ data }: SeasonProps) {
                                     height={blueberryImageData.mediaDetails?.height || 600}
                                     className="season__blueberry-image"
                                     data-animate
+                                    loading="lazy"
                                 />
 
                                 {/* Hotspots */}
@@ -221,6 +222,7 @@ export default function Season({ data }: SeasonProps) {
                     width={leavesImageData.mediaDetails?.width || 300}
                     height={leavesImageData.mediaDetails?.height || 300}
                     className="season__leaves"
+                    loading="lazy"
                 />
             )}
         </section>

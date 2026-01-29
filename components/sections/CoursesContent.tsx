@@ -99,6 +99,7 @@ export default function CoursesContent({ data }: CoursesContentProps) {
                                             fill
                                             style={{ objectFit: "cover" }}
                                             className="courses-content__image"
+                                            loading="lazy"
                                         />
                                     )}
                                 </div>

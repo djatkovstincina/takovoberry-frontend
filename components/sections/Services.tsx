@@ -118,6 +118,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                                         fill
                                         className="services__card-image"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                        loading="lazy"
                                     />
                                 </div>
                                 <div className="services__card-content">
