@@ -140,7 +140,7 @@ function MenuItemComponent({ item, lang }: { item: MenuItem; lang: Locale }) {
   };
 
   const cleanPath = getCleanPath(item.path || '', item.url);
-  
+
   // Check if this is an external link (file or external URL)
   const isExternal = cleanPath.startsWith('http');
 
