@@ -2,12 +2,12 @@
 # STAGING ENVIRONMENT - Block all crawlers
 # TODO: Update this for production deployment
 
-#User-agent: *
-#Disallow: /
+User-agent: *
+Disallow: /
 
 # Note: For production, replace with:
-User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /_next/
-Sitemap: https://takovoberry.com/sitemap.xml
+# User-agent: *
+# Allow: /
+# Disallow: /api/
+# Disallow: /_next/
+# Sitemap: https://takovoberry.com/sitemap.xml
