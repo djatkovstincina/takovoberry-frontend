@@ -96,8 +96,20 @@ async function getHeaderData(lang: Locale) {
 function MenuItemComponent({ item, lang }: { item: MenuItem; lang: Locale }) {
   const hasChildren = item.children && item.children.length > 0;
 
+  // CMS URL for direct file access
+  const CMS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://cms-takovoberry.orbu.studio';
+
   // Extract clean path from WordPress URL and ensure language prefix
   const getCleanPath = (path: string, url: string): string => {
+    // If it's a file upload (PDF, etc.), link directly to CMS
+    if (path.includes('/wp-content/uploads/') || url.includes('/wp-content/uploads/')) {
+      const uploadPath = path.includes('/wp-content/uploads/') ? path : url;
+      const uploadsIndex = uploadPath.indexOf('/wp-content/uploads/');
+      if (uploadsIndex !== -1) {
+        return `${CMS_URL}${uploadPath.substring(uploadsIndex)}`;
+      }
+    }
+
     // Try to extract the page slug from the path
     const pathParts = path.split('/').filter(Boolean);
     const wpBasePath = 'takovoberry'; // WordPress installation folder
@@ -128,17 +140,31 @@ function MenuItemComponent({ item, lang }: { item: MenuItem; lang: Locale }) {
   };
 
   const cleanPath = getCleanPath(item.path || '', item.url);
+  
+  // Check if this is an external link (file or external URL)
+  const isExternal = cleanPath.startsWith('http');
 
   return (
     <li className={`header__menu-item ${hasChildren ? 'header__menu-item--has-children' : ''}`}>
       <div className="header__menu-item-wrapper">
-        <Link
-          href={cleanPath}
-          target={item.target || "_self"}
-          className="header__menu-link"
-        >
-          {item.label}
-        </Link>
+        {isExternal ? (
+          <a
+            href={cleanPath}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header__menu-link"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <Link
+            href={cleanPath}
+            target={item.target || "_self"}
+            className="header__menu-link"
+          >
+            {item.label}
+          </Link>
+        )}
         {hasChildren && (
           <button className="header__submenu-toggle" aria-label="Toggle submenu">
             <svg className="header__submenu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">

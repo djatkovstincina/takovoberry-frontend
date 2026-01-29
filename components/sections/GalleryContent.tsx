@@ -244,6 +244,7 @@ export default function GalleryContent({ data }: GalleryContentProps) {
                                         fill
                                         style={{ objectFit: "cover" }}
                                         draggable={false}
+                                        loading="lazy"
                                     />
                                 </div>
                             </SwiperSlide>
