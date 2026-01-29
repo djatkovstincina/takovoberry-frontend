@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description: "Regenerative farming practices in Takovo region",
   // Block indexing on staging environment
   robots: isStaging ? { index: false, follow: false } : { index: true, follow: true },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
