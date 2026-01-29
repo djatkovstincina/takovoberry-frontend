@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import StickyHeader from "@/components/StickyHeader";
 import HeaderAnimation from "@/components/HeaderAnimation";
 import TranslationSync from "@/components/TranslationSync";
+import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
 import { graphqlClient } from "@/lib/graphql-client";
 import { GET_FOOTER_SETTINGS } from "@/lib/queries-polylang";
 import { FooterSettingsResponse } from "@/types/wordpress";
@@ -43,6 +44,7 @@ export default async function LangLayout({
 
   return (
     <div>
+      <LocalBusinessJsonLd />
       <TranslationSync />
       <HeaderAnimation />
       <StickyHeader />

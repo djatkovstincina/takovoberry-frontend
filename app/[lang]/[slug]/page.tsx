@@ -7,6 +7,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getUITranslations } from "@/lib/translations";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio';
+
 // List of reserved routes that have their own page files
 const RESERVED_ROUTES = ['news', 'vesti'];
 
@@ -86,9 +88,32 @@ export async function generateMetadata({
         };
     }
 
+    const description = pageData.seoMetaDescription || `${pageData.title} - Takovoberry`;
+    const url = `${SITE_URL}/${lang}/${slug}`;
+
     return {
         title: `${pageData.title} - Takovoberry`,
-        description: `${pageData.title} - Takovoberry`,
+        description,
+        alternates: {
+            canonical: url,
+            languages: {
+                'en': `${SITE_URL}/en/${slug}`,
+                'sr': `${SITE_URL}/sr/${slug}`,
+            },
+        },
+        openGraph: {
+            title: pageData.title,
+            description,
+            url,
+            siteName: 'Takovoberry',
+            locale: lang === 'sr' ? 'sr_RS' : 'en_US',
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: pageData.title,
+            description,
+        },
     };
 }
 

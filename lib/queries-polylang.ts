@@ -311,6 +311,7 @@ export const GET_PAGE_BY_SLUG = `
         id
         title
         slug
+        seoMetaDescription
         language {
           code
           name
