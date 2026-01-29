@@ -468,7 +468,6 @@ export interface PageData {
   id: string;
   title: string;
   slug: string;
-  seoMetaDescription?: string;
   language: {
     code: string;
     name: string;

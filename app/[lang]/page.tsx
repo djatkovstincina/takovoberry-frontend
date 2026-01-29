@@ -36,16 +36,14 @@ export async function generateMetadata({
   params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const homepageSlug = HOMEPAGE_SLUGS[lang] || 'home';
-  const pageData = await getPageData(homepageSlug, lang);
 
   const title = lang === 'sr'
     ? 'Takovoberry - Regenerativna poljoprivreda u regionu Takovo'
     : 'Takovoberry - Regenerative Farming in Takovo Region';
 
-  const description = pageData?.seoMetaDescription || (lang === 'sr'
+  const description = lang === 'sr'
     ? 'Otkrijte regenerativne poljoprivredne prakse u regionu Takovo. Održiva proizvodnja bobičastog voća.'
-    : 'Discover regenerative farming practices in the Takovo region. Sustainable berry production.');
+    : 'Discover regenerative farming practices in the Takovo region. Sustainable berry production.';
 
   return {
     title,

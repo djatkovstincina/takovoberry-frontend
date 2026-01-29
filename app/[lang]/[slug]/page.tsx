@@ -88,7 +88,7 @@ export async function generateMetadata({
         };
     }
 
-    const description = pageData.seoMetaDescription || `${pageData.title} - Takovoberry`;
+    const description = `${pageData.title} - Takovoberry`;
     const url = `${SITE_URL}/${lang}/${slug}`;
 
     return {
