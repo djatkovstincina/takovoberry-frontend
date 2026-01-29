@@ -5,13 +5,14 @@ import Image from "next/image";
 import type { GalleryContentSection } from "@/types/wordpress";
 import { fadeIn, killAnimations } from "@/lib/animations";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Thumbs, Keyboard, EffectFade } from 'swiper/modules';
+import { Thumbs, Keyboard, EffectFade, FreeMode } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
+import 'swiper/css/free-mode';
 
 interface GalleryContentProps {
     data: GalleryContentSection;
@@ -194,19 +195,30 @@ export default function GalleryContent({ data }: GalleryContentProps) {
 
                 <div className="gallery-content__thumbnails-wrapper" data-animate>
                     <Swiper
-                        modules={[Thumbs]}
+                        modules={[Thumbs, FreeMode]}
                         onSwiper={setThumbsSwiper}
                         slidesPerView={2.5}
                         spaceBetween={12}
                         watchSlidesProgress
-                        slideToClickedSlide
+                        freeMode={{
+                            enabled: true,
+                            sticky: false,
+                            momentumBounce: false,
+                        }}
+                        grabCursor
+                        touchRatio={1}
+                        threshold={5}
                         breakpoints={{
                             640: {
                                 slidesPerView: 3.5,
                                 spaceBetween: 16,
                             },
                             1024: {
-                                slidesPerView: 4.5,
+                                slidesPerView: 5.5,
+                                spaceBetween: 20,
+                            },
+                            1280: {
+                                slidesPerView: 6.5,
                                 spaceBetween: 20,
                             },
                         }}
@@ -214,17 +226,26 @@ export default function GalleryContent({ data }: GalleryContentProps) {
                     >
                         {galleryImages.map((image, index) => (
                             <SwiperSlide key={index}>
-                                <button
+                                <div
                                     className={"gallery-content__thumbnail " + (index === currentIndex ? "gallery-content__thumbnail--active" : "")}
+                                    onClick={() => mainSwiper?.slideTo(index)}
+                                    role="button"
+                                    tabIndex={0}
                                     aria-label={"Go to image " + (index + 1)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            mainSwiper?.slideTo(index);
+                                        }
+                                    }}
                                 >
                                     <Image
                                         src={image.sourceUrl}
                                         alt={image.altText || "Thumbnail " + (index + 1)}
                                         fill
                                         style={{ objectFit: "cover" }}
+                                        draggable={false}
                                     />
-                                </button>
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>
