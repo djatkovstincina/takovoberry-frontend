@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://localhost:8888/takovoberry";
+// Use CMS URL based on environment
+const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 
+    (process.env.NODE_ENV === 'production' 
+        ? 'https://cms-takovoberry.orbu.studio' 
+        : 'http://localhost:8888/takovoberry');
 
 interface ContactFormData {
     formId: string;
