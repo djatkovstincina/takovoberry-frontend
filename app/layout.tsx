@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 
-const isStaging = process.env.NEXT_PUBLIC_ENVIRONMENT === "staging";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio';
 
 export const metadata: Metadata = {
@@ -11,8 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Takovoberry",
   },
   description: "Regenerative farming practices in Takovo region. Sustainable berry production.",
-  // Block indexing on staging environment
-  robots: isStaging ? { index: false, follow: false } : { index: true, follow: true },
+  robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.svg",
   },

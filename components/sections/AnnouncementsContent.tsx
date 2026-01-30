@@ -18,23 +18,40 @@ export default function AnnouncementsContent({ data }: AnnouncementsContentProps
         const section = sectionRef.current;
         if (!section || animationInitialized.current) return;
 
+        // Function to trigger animations
+        const triggerAnimations = () => {
+            if (animationInitialized.current) return;
+            animationInitialized.current = true;
+
+            const header = section.querySelector(".announcements-content__header");
+            const buttons = section.querySelectorAll(".announcements-content__button");
+
+            fadeIn(header, { delay: 0.1 });
+            staggerFadeIn(buttons, { stagger: 0.1 });
+        };
+
+        // Check if section is already in viewport (for mobile or fast page loads)
+        const rect = section.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+        if (isInViewport) {
+            // Small delay to ensure DOM is ready
+            requestAnimationFrame(() => {
+                triggerAnimations();
+            });
+            return;
+        }
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting && !animationInitialized.current) {
-                        animationInitialized.current = true;
-
-                        const header = section.querySelector(".announcements-content__header");
-                        const buttons = section.querySelectorAll(".announcements-content__button");
-
-                        fadeIn(header, { delay: 0.1 });
-                        staggerFadeIn(buttons, { stagger: 0.1 });
-
+                    if (entry.isIntersecting) {
+                        triggerAnimations();
                         observer.disconnect();
                     }
                 });
             },
-            { threshold: 0.2 }
+            { threshold: 0.1, rootMargin: "50px" }
         );
 
         observer.observe(section);

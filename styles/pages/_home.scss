@@ -343,9 +343,11 @@
 
     &__point {
         position: relative;
+        width: fit-content;
+        white-space: wrap;
         padding-left: 1rem;
         font-size: 1.25rem;
-        font-size: clamp(1rem, 2vw, 1.25rem);
+        font-size: clamp(0.875rem, 2vw, 1.25rem);
         color: $charcoal;
         font-weight: 700;
         text-transform: uppercase;
@@ -356,7 +358,7 @@
             content: "";
             position: absolute;
             left: 0;
-            top: 50%;
+            top: 12px;
             transform: translateY(-50%);
             width: 8px;
             height: 8px;
@@ -555,7 +557,7 @@
             border-radius: 50%;
             position: relative;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            z-index: 2;
+            z-index: 1;
             will-change: transform;
             animation: scaleIn 0.3s ease;
             animation-delay: 0.8s;
@@ -603,7 +605,7 @@
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(0);
             margin-top: 1rem;
             background: $white;
             padding: 1.5rem;
@@ -611,8 +613,8 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             min-width: 250px;
             max-width: 300px;
-            z-index: 10;
-            animation: fadeInUp 0.3s ease;
+            z-index: 20;
+            opacity: 1;
 
             // Mobile: constrain width and position
             @media (max-width: 767px) {
@@ -637,8 +639,7 @@
             // Position adjustments for hotspots near edges
             &--left {
                 left: 0;
-                transform: translateX(0);
-                transition: all 0.3s ease;
+                transform: translateX(0) translateY(0);
 
                 &::before {
                     left: 15px;
@@ -649,7 +650,7 @@
             &--right {
                 left: auto;
                 right: 0;
-                transform: translateX(0);
+                transform: translateX(0) translateY(0);
 
                 &::before {
                     left: auto;

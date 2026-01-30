@@ -1,13 +1,19 @@
 # Robots.txt for Takovoberry
-# STAGING ENVIRONMENT - Block all crawlers
-# TODO: Update this for production deployment
+# https://takovoberry.com
 
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /_next/image/
 
-# Note: For production, replace with:
-# User-agent: *
-# Allow: /
-# Disallow: /api/
-# Disallow: /_next/
-# Sitemap: https://takovoberry.com/sitemap.xml
+# Sitemap
+Sitemap: https://takovoberry.orbu.studio/sitemap.xml
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
