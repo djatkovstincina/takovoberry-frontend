@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     template: "%s | Takovoberry",
   },
   description: "Regenerative farming practices in Takovo region. Sustainable berry production.",
-  robots: { index: true, follow: true },
+  // Block crawling until production launch
+  robots: { index: false, follow: false },
   icons: {
     icon: "/favicon.svg",
   },

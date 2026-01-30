@@ -1,19 +1,9 @@
 # Robots.txt for Takovoberry
-# https://takovoberry.com
+# STAGING - Block all crawlers until production launch
+# TODO: Enable crawling when site goes live
 
 User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /_next/static/
-Disallow: /_next/image/
+Disallow: /
 
-# Sitemap
-Sitemap: https://takovoberry.orbu.studio/sitemap.xml
-
-# Google
-User-agent: Googlebot
-Allow: /
-
-# Bing
-User-agent: Bingbot
-Allow: /
+# Sitemap (disabled until production)
+# Sitemap: https://takovoberry.com/sitemap.xml
