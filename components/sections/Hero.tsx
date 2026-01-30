@@ -165,7 +165,7 @@ export default function Hero({ data }: HeroProps) {
                             height={backgroundImageData.mediaDetails?.height || 800}
                             className="hero__background-image"
                             priority
-                            data-animate
+                            fetchPriority="high"
                         />
                     )}
 

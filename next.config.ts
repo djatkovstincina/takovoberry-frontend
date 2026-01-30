@@ -7,6 +7,10 @@ const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL ||
     : 'http://localhost:8888/takovoberry');
 
 const nextConfig: NextConfig = {
+  // Experimental optimizations for CSS
+  experimental: {
+    optimizeCss: true,
+  },
   images: {
     remotePatterns: [
       // Production WordPress
