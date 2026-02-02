@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 // Use CMS URL based on environment
 const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 
   (process.env.NODE_ENV === 'production' 
-    ? 'https://cms-takovoberry.orbu.studio' 
+    ? 'https://wp.takovoberry.com' 
     : 'http://localhost:8888/takovoberry');
 
 const nextConfig: NextConfig = {
@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
       // Production WordPress
       {
         protocol: 'https',
-        hostname: 'cms-takovoberry.orbu.studio',
+        hostname: 'wp.takovoberry.com',
         pathname: '/wp-content/uploads/**',
       },
       // Gravatar for user avatars

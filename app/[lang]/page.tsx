@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 
 export const revalidate = 60;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com';
 
 // Homepage slugs per language
 const HOMEPAGE_SLUGS: Record<Locale, string> = {

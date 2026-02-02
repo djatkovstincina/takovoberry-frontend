@@ -72,7 +72,7 @@ export function ArticleJsonLd({
         publisher: {
             '@type': 'Organization',
             name: 'Takovoberry',
-            url: process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio',
+            url: process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com',
         },
     };
 
@@ -108,10 +108,10 @@ export function LocalBusinessJsonLd() {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
-        '@id': process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio',
+        '@id': process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com',
         name: 'Takovoberry',
         description: 'Regenerative farming practices in Takovo region. Sustainable berry production.',
-        url: process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio',
+        url: process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com',
         address: {
             '@type': 'PostalAddress',
             addressRegion: 'Takovo',

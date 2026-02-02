@@ -97,7 +97,7 @@ function MenuItemComponent({ item, lang }: { item: MenuItem; lang: Locale }) {
   const hasChildren = item.children && item.children.length > 0;
 
   // CMS URL for direct file access
-  const CMS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://cms-takovoberry.orbu.studio';
+  const CMS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://wp.takovoberry.com';
 
   // Extract clean path from WordPress URL and ensure language prefix
   const getCleanPath = (path: string, url: string): string => {
@@ -131,7 +131,7 @@ function MenuItemComponent({ item, lang }: { item: MenuItem; lang: Locale }) {
     }
 
     // If it's an external URL, return as-is
-    if (url.startsWith('http') && !url.includes('localhost') && !url.includes('cms-takovoberry') && !url.includes('takovoberry.orbu.studio')) {
+    if (url.startsWith('http') && !url.includes('localhost') && !url.includes('cms.takovoberry') && !url.includes('takovoberry.com')) {
       return url;
     }
 

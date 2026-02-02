@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -10,8 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Takovoberry",
   },
   description: "Regenerative farming practices in Takovo region. Sustainable berry production.",
-  // Block crawling until production launch
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.svg",
   },

@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getUITranslations } from "@/lib/translations";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com';
 
 // List of reserved routes that have their own page files
 const RESERVED_ROUTES = ['news', 'vesti'];

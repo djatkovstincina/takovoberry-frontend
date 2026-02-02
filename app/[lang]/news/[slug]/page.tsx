@@ -8,7 +8,7 @@ import NewsSingleClient from "@/components/news/NewsSingleClient";
 import { getUITranslations } from "@/lib/translations";
 import { ArticleJsonLd } from "@/components/seo/JsonLd";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.orbu.studio';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com';
 
 interface PostResponse {
     post: Post;
