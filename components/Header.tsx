@@ -131,7 +131,7 @@ function MenuItemComponent({ item, lang }: { item: MenuItem; lang: Locale }) {
     }
 
     // If it's an external URL, return as-is
-    if (url.startsWith('http') && !url.includes('localhost') && !url.includes('cms.takovoberry') && !url.includes('takovoberry.com')) {
+    if (url.startsWith('http') && !url.includes('localhost') && !url.includes('wp.takovoberry') && !url.includes('takovoberry.com')) {
       return url;
     }
 
