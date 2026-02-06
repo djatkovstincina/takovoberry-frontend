@@ -92,7 +92,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, onError }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({ ...formData, lang }),
             });
 
             const result = await response.json();

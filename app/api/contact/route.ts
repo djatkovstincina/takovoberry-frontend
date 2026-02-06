@@ -10,6 +10,7 @@ interface ContactFormData {
     phone?: string;
     subject?: string;
     message: string;
+    lang?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -27,7 +28,8 @@ export async function POST(request: NextRequest) {
 
         const body: ContactFormData = await request.json();
 
-        const { name, email, phone, subject, message } = body;
+        const { name, email, phone, subject, message, lang } = body;
+        const isEnglish = lang === "en";
 
         // Validate required fields
         if (!name || !email || !message) {
@@ -42,14 +44,14 @@ export async function POST(request: NextRequest) {
             from: "Takovoberry Contact <noreply@takovoberry.com>",
             to: [CONTACT_EMAIL],
             replyTo: email,
-            subject: subject || `Nova poruka od ${name}`,
+            subject: subject || (isEnglish ? `New message from ${name}` : `Nova poruka od ${name}`),
             html: `
-                <h2>Nova poruka sa kontakt forme</h2>
-                <p><strong>Ime:</strong> ${name}</p>
+                <h2>${isEnglish ? "New message from contact form" : "Nova poruka sa kontakt forme"}</h2>
+                <p><strong>${isEnglish ? "Name" : "Ime"}:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
-                ${phone ? `<p><strong>Telefon:</strong> ${phone}</p>` : ""}
-                ${subject ? `<p><strong>Tema:</strong> ${subject}</p>` : ""}
-                <p><strong>Poruka:</strong></p>
+                ${phone ? `<p><strong>${isEnglish ? "Phone" : "Telefon"}:</strong> ${phone}</p>` : ""}
+                ${subject ? `<p><strong>${isEnglish ? "Subject" : "Tema"}:</strong> ${subject}</p>` : ""}
+                <p><strong>${isEnglish ? "Message" : "Poruka"}:</strong></p>
                 <p>${message.replace(/\n/g, "<br>")}</p>
             `,
         });
@@ -64,7 +66,7 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            message: "Poruka je uspešno poslata!",
+            message: isEnglish ? "Message sent successfully!" : "Poruka je uspešno poslata!",
         });
     } catch (error) {
         console.error("Contact form error:", error);
