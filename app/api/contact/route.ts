@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Email where you want to receive contact form submissions
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "info@takovoberry.com";
 
@@ -16,6 +14,17 @@ interface ContactFormData {
 
 export async function POST(request: NextRequest) {
     try {
+        // Initialize Resend inside the handler to ensure env vars are available
+        const apiKey = process.env.RESEND_API_KEY;
+        if (!apiKey) {
+            console.error("RESEND_API_KEY is not configured");
+            return NextResponse.json(
+                { success: false, message: "Email service not configured" },
+                { status: 500 }
+            );
+        }
+        const resend = new Resend(apiKey);
+
         const body: ContactFormData = await request.json();
 
         const { name, email, phone, subject, message } = body;
