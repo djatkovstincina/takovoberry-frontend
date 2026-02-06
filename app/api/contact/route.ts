@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
-// Use CMS URL based on environment
-const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 
-    (process.env.NODE_ENV === 'production' 
-        ? 'https://cms-takovoberry.orbu.studio' 
-        : 'http://localhost:8888/takovoberry');
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Email where you want to receive contact form submissions
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "info@takovoberry.com";
 
 interface ContactFormData {
-    formId: string;
     name: string;
     email: string;
     phone?: string;
@@ -19,67 +18,47 @@ export async function POST(request: NextRequest) {
     try {
         const body: ContactFormData = await request.json();
 
-        const { formId, name, email, phone, subject, message } = body;
+        const { name, email, phone, subject, message } = body;
 
         // Validate required fields
-        if (!formId || !name || !email || !message) {
+        if (!name || !email || !message) {
             return NextResponse.json(
                 { success: false, message: "Missing required fields" },
                 { status: 400 }
             );
         }
 
-        // Create FormData for CF7 REST API
-        // CF7 expects form data, not JSON
-        const formData = new FormData();
-        formData.append("your-name", name);
-        formData.append("your-email", email);
-        formData.append("your-phone", phone || "");
-        formData.append("your-subject", subject || "");
-        formData.append("your-message", message);
+        // Send email using Resend
+        const { error } = await resend.emails.send({
+            from: "Takovoberry Contact <noreply@takovoberry.com>",
+            to: [CONTACT_EMAIL],
+            replyTo: email,
+            subject: subject || `Nova poruka od ${name}`,
+            html: `
+                <h2>Nova poruka sa kontakt forme</h2>
+                <p><strong>Ime:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                ${phone ? `<p><strong>Telefon:</strong> ${phone}</p>` : ""}
+                ${subject ? `<p><strong>Tema:</strong> ${subject}</p>` : ""}
+                <p><strong>Poruka:</strong></p>
+                <p>${message.replace(/\n/g, "<br>")}</p>
+            `,
+        });
 
-        // Submit to Contact Form 7 REST API
-        const cf7Response = await fetch(
-            `${WORDPRESS_URL}/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`,
-            {
-                method: "POST",
-                body: formData,
-            }
-        );
-
-        const cf7Data = await cf7Response.json();
-
-        // CF7 returns status: "mail_sent" on success
-        if (cf7Data.status === "mail_sent") {
-            return NextResponse.json({
-                success: true,
-                message: cf7Data.message || "Message sent successfully!",
-            });
-        } else if (cf7Data.status === "validation_failed") {
-            // Extract validation errors from CF7 response
-            const errorMessages = cf7Data.invalid_fields
-                ?.map((field: { message: string }) => field.message)
-                .join(", ");
-            
+        if (error) {
+            console.error("Resend error:", error);
             return NextResponse.json(
-                {
-                    success: false,
-                    message: errorMessages || cf7Data.message || "Validation failed",
-                },
-                { status: 400 }
-            );
-        } else {
-            // Other error states
-            return NextResponse.json(
-                {
-                    success: false,
-                    message: cf7Data.message || "Failed to send message",
-                },
+                { success: false, message: "Failed to send email" },
                 { status: 500 }
             );
         }
+
+        return NextResponse.json({
+            success: true,
+            message: "Poruka je uspešno poslata!",
+        });
     } catch (error) {
-        console.error("Contact form submission error:", error);
+        console.error("Contact form error:", error);
         return NextResponse.json(
             {
                 success: false,

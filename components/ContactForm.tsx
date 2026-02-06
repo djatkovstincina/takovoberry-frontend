@@ -6,7 +6,7 @@ import type { Locale } from "@/i18n-config";
 import { getContactFormTranslations } from "@/lib/translations/contact-form";
 
 interface ContactFormProps {
-    formId: string;
+    formId?: string; // Optional now, not used with Resend
     onSuccess?: () => void;
     onError?: (error: string) => void;
 }
@@ -25,7 +25,7 @@ interface FormErrors {
     message?: string;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ formId, onSuccess, onError }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, onError }) => {
     const params = useParams();
     const lang = (params?.lang as Locale) || "en";
     const t = getContactFormTranslations(lang);
@@ -92,10 +92,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ formId, onSuccess, onError })
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    formId,
-                    ...formData,
-                }),
+                body: JSON.stringify(formData),
             });
 
             const result = await response.json();
