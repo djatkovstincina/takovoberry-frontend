@@ -148,6 +148,8 @@ export default function OurApproach({ data }: OurApproachProps) {
                                         height={images.nodes[0].mediaDetails?.height || 300}
                                         className="our-approach__image"
                                         loading="lazy"
+                                        sizes="(max-width: 768px) 100vw, 300px"
+                                        quality={75}
                                     />
                                 </div>
                                 <div className="our-approach__image-wrapper our-approach__image-wrapper--right" data-animate>
@@ -158,6 +160,8 @@ export default function OurApproach({ data }: OurApproachProps) {
                                         height={images.nodes[1].mediaDetails?.height || 500}
                                         className="our-approach__image"
                                         loading="lazy"
+                                        sizes="(max-width: 768px) 100vw, 440px"
+                                        quality={75}
                                     />
                                 </div>
                             </>
@@ -172,6 +176,8 @@ export default function OurApproach({ data }: OurApproachProps) {
                                 height={leavesImageData.mediaDetails?.height || 200}
                                 className="our-approach__leaves"
                                 loading="lazy"
+                                sizes="350px"
+                                quality={70}
                             />
                         )}
                     </div>

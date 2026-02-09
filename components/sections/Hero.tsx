@@ -166,6 +166,8 @@ export default function Hero({ data }: HeroProps) {
                             className="hero__background-image"
                             priority
                             fetchPriority="high"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 670px"
+                            quality={75}
                         />
                     )}
 

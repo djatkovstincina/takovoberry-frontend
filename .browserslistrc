@@ -1,0 +1,15 @@
+# Target modern browsers only
+# This removes polyfills for Array.at, Object.hasOwn, String.trimStart, etc.
+# Saves ~14KB of JavaScript
+
+# Browsers that support ES2022+ features
+Chrome >= 92
+Firefox >= 90
+Safari >= 15
+Edge >= 92
+iOS >= 15
+ChromeAndroid >= 92
+
+# Exclude IE completely
+not IE 11
+not dead

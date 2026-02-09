@@ -1,5 +1,30 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.scss";
+
+// Use next/font/local for optimal font loading
+const inter = localFont({
+  src: [
+    {
+      path: "../public/fonts/Inter-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Inter-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Inter-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-inter",
+  display: "swap",
+  preload: true,
+});
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://takovoberry.com';
 
@@ -30,23 +55,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sr">
+    <html lang="sr" className={inter.variable}>
       <head>
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="/fonts/Inter-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Inter-Bold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
+        {/* Preconnect to WordPress for faster image loading */}
+        <link rel="preconnect" href="https://wp.takovoberry.com" />
+        <link rel="dns-prefetch" href="https://wp.takovoberry.com" />
       </head>
       <body className="antialiased">
         {children}

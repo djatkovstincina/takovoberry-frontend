@@ -96,6 +96,8 @@ export default function Cards({ data }: CardsProps) {
                                 height={cards[0].image.node.mediaDetails?.height || 400}
                                 className="cards__image"
                                 loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 468px"
+                                quality={75}
                             />
                         </div>
                         <div className="cards__content">
@@ -150,6 +152,8 @@ export default function Cards({ data }: CardsProps) {
                                 height={cards[1].image.node.mediaDetails?.height || 400}
                                 className="cards__image"
                                 loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 463px"
+                                quality={75}
                             />
                         </div>
                     </div>
@@ -164,6 +168,8 @@ export default function Cards({ data }: CardsProps) {
                                 height={cards[2].image.node.mediaDetails?.height || 600}
                                 className="cards__image"
                                 loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 464px"
+                                quality={75}
                             />
                         </div>
                         <div className="cards__content">
