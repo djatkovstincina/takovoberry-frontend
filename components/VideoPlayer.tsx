@@ -11,19 +11,6 @@ interface VideoPlayerProps {
     muted?: boolean;
 }
 
-// Convert WordPress URL to proxy URL for better CORS handling
-function getProxyVideoUrl(src: string): string {
-    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://wp.takovoberry.com';
-    if (src.includes(wpUrl) || src.includes('wp.takovoberry.com')) {
-        // Extract the path after wp-content/uploads
-        const match = src.match(/wp-content\/uploads\/(.*)/);
-        if (match) {
-            return `/wp-content/uploads/${match[1]}`;
-        }
-    }
-    return src;
-}
-
 export default function VideoPlayer({
     src,
     type = "video/mp4",
@@ -38,9 +25,6 @@ export default function VideoPlayer({
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(false);
     const [mounted, setMounted] = useState(false);
-
-    // Use proxy URL for the video
-    const videoSrc = getProxyVideoUrl(src);
 
     useEffect(() => {
         const video = videoRef.current;
@@ -114,7 +98,7 @@ export default function VideoPlayer({
                 poster={poster}
                 className="video-player__video"
             >
-                <source src={videoSrc} type={type} />
+                <source src={src} type={type} />
                 Your browser does not support the video tag.
             </video>
 
