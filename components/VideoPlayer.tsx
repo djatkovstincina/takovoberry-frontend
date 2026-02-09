@@ -38,7 +38,7 @@ export default function VideoPlayer({
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [showControls, setShowControls] = useState(false);
     const [mounted, setMounted] = useState(false);
-    
+
     // Use proxy URL for the video
     const videoSrc = getProxyVideoUrl(src);
 
