@@ -145,16 +145,11 @@
   &__credit {
     margin: 0;
     font-size: 0.75rem;
-    color: rgba($white, 0.5);
+    color: $white;
   }
 
   &__credit-link {
-    color: rgba($white, 0.6);
+    color: $white;
     text-decoration: none;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: $white;
-    }
   }
 }
