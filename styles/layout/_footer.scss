@@ -4,7 +4,7 @@
   position: relative;
   background-color: $primary-blue;
   color: $white;
-  min-height: 80px;
+  min-height: 120px;
   display: flex;
   align-items: center;
 
@@ -20,7 +20,6 @@
     @include mq("md") {
       grid-template-columns: 1fr 1fr 1fr;
       gap: 2rem;
-      padding: 0;
     }
   }
 
@@ -44,10 +43,6 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-
-      @include mq("md") {
-        gap: 1.5rem;
-      }
     }
 
     &--right {
@@ -138,6 +133,28 @@
     svg {
       width: 24px;
       height: 24px;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba($white, 0.15);
+    padding: 0.75rem 0;
+    text-align: center;
+  }
+
+  &__credit {
+    margin: 0;
+    font-size: 0.75rem;
+    color: rgba($white, 0.5);
+  }
+
+  &__credit-link {
+    color: rgba($white, 0.6);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $white;
     }
   }
 }

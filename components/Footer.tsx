@@ -81,6 +81,13 @@ const Footer: React.FC<FooterProps> = ({ settings }) => {
             </div>
           </div>
         </div>
+
+        {/* Bottom: Developer Credit */}
+        <div className="footer__bottom">
+          <p className="footer__credit">
+            Developed by: <a href="mailto:ndjatkov@gmail.com" className="footer__credit-link">Orbu Studio</a>
+          </p>
+        </div>
       </div>
     </footer>
   );
