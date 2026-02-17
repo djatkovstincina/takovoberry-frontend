@@ -155,6 +155,12 @@ export interface HeroSection {
       fileSize: number;
     };
   };
+  videoPoster?: {
+    node: {
+      sourceUrl: string;
+      altText: string;
+    };
+  };
   backgroundImage?: {
     node: {
       sourceUrl: string;

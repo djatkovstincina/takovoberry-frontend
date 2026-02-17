@@ -19,11 +19,13 @@ export default function Hero({ data }: HeroProps) {
         title,
         description,
         video,
+        videoPoster,
         backgroundImage,
     } = data;
 
     // Extract node data for easier access
     const videoData = video?.node;
+    const videoPosterData = videoPoster?.node;
     const backgroundImageData = backgroundImage?.node;
 
     useEffect(() => {
@@ -42,9 +44,8 @@ export default function Hero({ data }: HeroProps) {
                         const heroTitle = section.querySelector(".hero__title");
                         const heroDescription = section.querySelector(".hero__description");
                         const heroVideo = section.querySelector(".hero__video");
-                        const heroLeaves = section.querySelector(".hero__background-image");
 
-                        // Floating animation for background image
+                        // Floating animation for background image (no fadeIn to avoid LCP flash)
                         if (backgroundImage) {
                             circularFloating(backgroundImage, {
                                 radius: 16,
@@ -91,15 +92,6 @@ export default function Hero({ data }: HeroProps) {
                             });
                         }
 
-                        if (heroLeaves) {
-                            fadeIn(heroLeaves, {
-                                duration: 1,
-                                delay: 0.5,
-                                ease: "power2.out",
-                                y: 0
-                            });
-                        }
-
                         // Disconnect observer after animations start
                         observer.disconnect();
                     }
@@ -122,14 +114,12 @@ export default function Hero({ data }: HeroProps) {
             const heroTitle = section.querySelector(".hero__title");
             const heroDescription = section.querySelector(".hero__description");
             const heroVideo = section.querySelector(".hero__video");
-            const heroLeaves = section.querySelector(".hero__background-image");
 
             if (backgroundImage) killAnimations(backgroundImage);
             if (heroTag) killAnimations(heroTag);
             if (heroTitle) killAnimations(heroTitle);
             if (heroDescription) killAnimations(heroDescription);
             if (heroVideo) killAnimations(heroVideo);
-            if (heroLeaves) killAnimations(heroLeaves);
         };
     }, []);
 
@@ -176,6 +166,7 @@ export default function Hero({ data }: HeroProps) {
                             <VideoPlayer
                                 src={videoData.mediaItemUrl}
                                 type={videoData.mimeType || "video/mp4"}
+                                poster={videoPosterData?.sourceUrl}
                                 autoPlay={true}
                                 loop={true}
                                 muted={true}

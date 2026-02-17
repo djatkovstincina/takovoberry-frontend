@@ -330,6 +330,12 @@ export const GET_PAGE_BY_SLUG = `
                   fileSize
                 }
               }
+              videoPoster {
+                node {
+                  sourceUrl
+                  altText
+                }
+              }
               backgroundImage {
                 node {
                   sourceUrl
