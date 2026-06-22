@@ -2,6 +2,23 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { i18n } from './i18n-config';
 
+function getLocaleFromCountry(request: NextRequest): string {
+  // Vercel automatically sets this header based on the visitor's IP
+  const country = request.headers.get('x-vercel-ip-country');
+
+  // Serbian for visitors from Serbia, English for everyone else
+  if (country === 'RS') {
+    return 'sr';
+  }
+
+  // Fallback to default locale locally (header won't exist in dev)
+  if (!country) {
+    return i18n.defaultLocale;
+  }
+
+  return 'en';
+}
+
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
@@ -12,10 +29,8 @@ export function middleware(request: NextRequest) {
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    const locale = i18n.defaultLocale;
+    const locale = getLocaleFromCountry(request);
 
-    // e.g. incoming request is /about
-    // The new URL is now /en/about
     return NextResponse.redirect(
       new URL(`/${locale}${pathname}`, request.url)
     );
